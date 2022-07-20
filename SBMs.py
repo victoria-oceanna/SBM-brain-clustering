@@ -3,6 +3,7 @@ from graph_tool import inference
 import graph_tool as gt
 import networkx as nx
 import numpy as np
+import config
 
 
 # function for obtaining SBM partition
