@@ -13,3 +13,5 @@ Dependencies:
               scipy.io
               
               joblib
+              
+              pytictoc (only used for timing; can be removed)
