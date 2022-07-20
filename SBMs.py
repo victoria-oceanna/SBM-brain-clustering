@@ -5,6 +5,11 @@ import networkx as nx
 import numpy as np
 import config
 
+#set global variables from config
+choose_run = config.choose_run
+threshold = config.threshold
+file_names = config.file_names
+iterations = config.iterations
 
 # function for obtaining SBM partition
 def regular_SBM(adj, threshold, iterations):
