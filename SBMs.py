@@ -10,6 +10,7 @@ choose_run = config.choose_run
 threshold = config.threshold
 file_names = config.file_names
 iterations = config.iterations
+directory = config.loc
 
 # function for obtaining SBM partition
 def regular_SBM(adj, threshold, iterations):
@@ -61,4 +62,4 @@ def nested_SBM(adj, threshold, iterations):
     #get the final block state as a partition
     partition0 = np.asarray(state.get_bs()[0])
 
-    return g, state, partition0
+    return partition0
