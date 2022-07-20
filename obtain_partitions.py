@@ -3,6 +3,7 @@ import numpy as np
 import graph_tool as gt
 from graph_tool import inference
 from readFile import *
+from to_adjacency import *
 from SBMs import *
 import config
 
