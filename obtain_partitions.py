@@ -1,9 +1,16 @@
 from scipy.io import loadmat
 import numpy as np
-import readFile
 import graph_tool as gt
 from graph_tool import inference
+from readFile import *
 from SBMs import *
+import config
+
+#set global variables from config
+choose_run = config.choose_run
+threshold = config.threshold
+file_names = config.file_names
+iterations = config.iterations
 
 def obtain_nested_partition(i):
     #choose run with lowest percent censored frames and adjust index
