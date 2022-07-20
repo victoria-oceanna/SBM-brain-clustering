@@ -1,7 +1,15 @@
 import networkx as nx
 import pyintergraph
+import config
 
-# function for converting connectivity matrix into adjacency matrix and appropriate graph object
+#set global variables from config
+choose_run = config.choose_run
+threshold = config.threshold
+file_names = config.file_names
+iterations = config.iterations
+directory = config.loc 
+
+#function for converting connectivity matrix into adjacency matrix and appropriate graph object
 #adj input is a connectivity matrix from .mat file; threshold is a float
 def to_adjacency(adj, threshold):
     for i in range(len(adj)):
@@ -20,3 +28,4 @@ def to_adjacency(adj, threshold):
     #convert NetworkX graph to graph-tool graph
     g = pyintergraph.nx2gt(g, labelname="node_label")
     return g
+
