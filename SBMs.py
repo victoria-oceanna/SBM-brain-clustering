@@ -7,15 +7,15 @@ import config
 
 #set global variables from config
 choose_run = config.choose_run
-threshold = config.threshold
-file_names = config.file_names
 iterations = config.iterations
 directory = config.loc
+runs = config.runs
+subject_list = config.subject_list
 
 # function for obtaining SBM partition
-def regular_SBM(adj, threshold, iterations):
+def regular_SBM(adj, iterations):
     #convert connectivity matrix to graph
-    g = to_adjacency(adj, threshold)
+    g = to_adjacency(adj)
     
     #find an intial state
     state = inference.minimize_blockmodel_dl(g, deg_corr=True)
@@ -44,9 +44,9 @@ def regular_SBM(adj, threshold, iterations):
     return partition
 
 # function for obtaining nSBM partition
-def nested_SBM(adj, threshold, iterations):
+def nested_SBM(adj, iterations):
     #convert connectivity matrix to graph
-    g = to_adjacency(adj, threshold)
+    g = to_adjacency(adj)
     
     #find an intial state
     state = inference.minimize_nested_blockmodel_dl(g, deg_corr=True)

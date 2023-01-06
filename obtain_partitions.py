@@ -10,41 +10,28 @@ import config
 
 #set global variables from config
 choose_run = config.choose_run
-threshold = config.threshold
-file_names = config.file_names
 iterations = config.iterations
 directory = config.loc
+runs = config.runs
+subject_list = config.subject_list
 
-def obtain_regular_partition(i):
-    #choose run with lowest percent censored frames and adjust index
-    PC = int(choose_run['best_runs'][i]) - 1
+def obtain_regular_partition(i, iterations):
     
-    # load the data for that run
-    print(file_names[i])
-    adj = loadmat(directory + file_names[i])
+    adj = loadmat(subject_list[i])
+    PC = runs[i]
+    adj = adj['network_adjacency'][0][PC][0][0]['adjacency'][0]['adjacency'][0]
+    partition = regular_SBM(adj, iterations)
     
-    # select the correct connectivity matrix for best run
-    rmat = np.asarray(adj['RS_connectivity_raw'][0][PC]['xcorr'][0][0]['rmat'])
-    run = np.asarray(rmat[0][0])
-
-    # obtain nSBM partition
-    partition = regular_SBM(run, threshold, iterations)
     return partition
 
 
-def obtain_nested_partition(i):
-    #choose run with lowest percent censored frames and adjust index
-    PC = int(choose_run['best_runs'][i]) - 1
+def obtain_nested_partition(i, iterations):
     
-    # load the data for that run
-    print(file_names[i])
-    adj = loadmat(directory + file_names[i])
+    adj = loadmat(subject_list[i])
+    PC = runs[i]
+    adj = adj['network_adjacency'][0][PC][0][0]['adjacency'][0]['adjacency'][0]
+    partition = nested_SBM(adj, iterations)
     
-    # select the correct connectivity matrix for best run
-    rmat = np.asarray(adj['RS_connectivity_raw'][0][PC]['xcorr'][0][0]['rmat'])
-    run = np.asarray(rmat[0][0])
-
-    # obtain nSBM partition
-    partition = nested_SBM(run, threshold, iterations)
     return partition
+
 
